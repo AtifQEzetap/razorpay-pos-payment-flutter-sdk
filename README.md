@@ -5,7 +5,7 @@
 [//]: # ([![pub points]&#40;https://img.shields.io/pub/points/ezetap_sdk?color=2E8B57&label=pub%20points&#41;]&#40;https://pub.dev/packages/ezetap_sdk/score&#41;)
 
 [//]: # ()
-Welcome to Ezetap Payments Flutter SDK integration! You can easily collect payments from your
+Welcome to Razorpay POS Payments Flutter SDK integration! You can easily collect payments from your
 existing android applications by integrating the SDK.
 
 ## How integration works
@@ -427,6 +427,14 @@ RefundRequest request = RefundRequest(amount: "", txnId: "");
 | **txnId** | Transaction Id of the transaction | Yes         |
 
 </details>
+
+## Java / Kotlin
+
+https://github.com/AtifQEzetap/razorpay-pos-payment-flutter-sdk
+
+## React Native
+
+https://github.com/AtifQEzetap/razorpay-pos-payment-react-native-sdk
 
 ## Support
 
