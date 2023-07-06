@@ -1,4 +1,4 @@
-# ezetap_sdk
+# razorpay-pos-payment-flutter-sdk
 
 [//]: # ([![pub package]&#40;https://img.shields.io/pub/v/ezetap_sdk.svg&#41;]&#40;https://pub.dev/packages/ezetap_sdk&#41;)
 
