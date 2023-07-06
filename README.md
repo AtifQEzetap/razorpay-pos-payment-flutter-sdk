@@ -427,3 +427,7 @@ RefundRequest request = RefundRequest(amount: "", txnId: "");
 | **txnId** | Transaction Id of the transaction | Yes         |
 
 </details>
+
+## Support
+
+Razorpay is a tech company. We handle technical support too. If you are facing any kind of issue, You can write to us at (emailId). You can expect a response from the developers who are responsible for the SDK within 2 working days.
