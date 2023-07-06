@@ -54,7 +54,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Request Code</summary>
+<summary>Code Block</summary>
 
 ```Dart
 InitializeRequest request = InitializeRequest(
@@ -95,8 +95,8 @@ captureReceipt: true);
 
 ## Payment Transaction API
 
-```Java
-EzeAPI.performTransaction(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.performTransaction(request);
 ```
 
 Razorpay POS has a universal pay API through which all the payment modes (that is enabled for the merchant) can be invoked through a single API call. With this API there will be no need of calling the individual methods for different payment modes (like Card, Remote Pay, UPI etc).
@@ -104,83 +104,38 @@ Razorpay POS has a universal pay API through which all the payment modes (that i
 Preparing Input for the Pay API
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
 ```Java
-GenericPayment request = new GenericPayment();
-request.setAmount(12000);
-request.setTxnType(TxnType.PAY);
-request.setUserName("abcddd");
-request.setIssueType("xyz");
-request.setIssueInfo("abc");
-request.setTags(listOfString);
-request.setMerchantPhoneNumber("7000000000");
-request.setMerchantEmail("abc@xyz.com");
-request.setProductDetails(new ProductDetails());
-request.setAdditionalReferences(listOfString);
+GenericPayment request = GenericPayment(
+amount:12000,
+txnType: TxnType.PAY,
+userName:"abcddd",
+issueType:"xyz",
+issueInfo:"ABC",
+tags:listOfString,
+merchantPhoneNumber:"7000000000",
+merchantEmail:"abc@xyz.com",
+productDetails:ProductDetails(),
+additionalReferences:listOfString,
 request.setPayToAccount("");
 request.setOptions(new Options());
-request.setUpi(new UPIRequest());
-request.setGst(new Gst());
-request.setPaymentMode(TxnMode.CARD);
-request.setWalletAcquirer("abcddd");
-request.setAgentName("abcddd");
-request.setAgentMob("8000000000");
+upi:UPIRequest(),
+gst:Gst(),
+paymentMode:TxnMode.CARD,
+walletAcquirer:"abcddd",
+agentName:"abcddd",
+agentMob:"8000000000");
 
-Options op = new Options();
-op.setReferences(new References());
-op.setAmountTip(10.1);
-op.setCustomer(new Customer());
-op.setPaymentBy("");
-op.setEmiType(EmiType.NORMAL);
-op.setProviderName(Provider.KREDITBEE);
-op.setServiceFee(1.0);
-op.setAmountCashback(10.0);
-op.setAppData(new Hashtable<String, Object>());
-op.setAddlData(new Hashtable<String, Object>());
-op.setLabels(listOfString);
-
-
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = GenericPayment()
-request.amount = 12000
-request.txnType = TxnType.PAY
-request.userName = "abcddd"
-request.issueType = "xyz"
-request.issueInfo = "abc"
-request.tags = listOfString
-request.merchantPhoneNumber = "7000000000"
-request.merchantEmail = "abc@xyz.com"
-request.productDetails = ProductDetails()
-request.additionalReferences = listOfString()
-request.setPayToAccount = ""
-request.options = Options()
-request.upi = UPIRequest()
-request.gst Gst()
-request.paymentMode = TxnMode.CARD
-request.walletAcquirer = "abcddd"
-request.agentName ="abcddd"
-request.agentMob = "8000000000"
-
-val op = Options()
-op.references = References()
-op.amountTip = 10.1
-op.customer = Customer()
-op.paymentBy = ""
-op.emiType = EmiType.NORMAL
-op.providerName = Provider.KREDITBEE
-op.serviceFee = 1.0
-op.amountCashback = 10.0
-op.appData = Hashtable<String, Any>()
-op.addlData = Hashtable<String, Any>()
-op.labels = listOfString
-
+Options op =  Options(
+references: References(),
+amountTip:10.1,
+customer: Customer(),
+paymentBy:"",
+emiType:EmiType.NORMAL,
+providerName:Provider.KREDITBEE,
+serviceFee:1.0,
+amountCashback:10.0);
 ```
 </details>
 
@@ -203,8 +158,8 @@ Note: You would like to associate some context for the payment like order number
 
 ## Prepare Device API
 
-```Java
-EzeAPI.prepareDevice(this, REQUEST_CODE)
+```Dart
+String? result = await EzetapSdk.prepareDevice();
 ```
 Prepare Device is used to initialize the device (card reader) with the updated encryption keys from the corresponding bank
 
@@ -212,8 +167,8 @@ This API doesn't need any request parameters
 
 ## Get Card Info API
 
-```Java
-EzeAPI.getCardInfo(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.getCardInfo(request);
 ```
 
 Get Card Info API is used to get the card information with the type of card, card number etc.
@@ -221,20 +176,11 @@ Get Card Info API is used to get the card information with the type of card, car
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-CardInfoRequest request = new CardInfoRequest();
-request.setcardType("your card type");
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = CardInfoRequest()
-request.cardType = "your card type"
+```Dart
+CardInfoRequest request = CardInfoRequest(
+cardType:"your card type");
 ```
 </details>
 
@@ -249,8 +195,8 @@ request.cardType = "your card type"
 
 ## Send Receipt API
 
-```Java
-EzeAPI.sendReceipt(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.sendReceipt(request);
 ```
 Ezetap provides a way to send e-receipts to customers. You can pass mobile, email respectively as part of object.
 
@@ -258,24 +204,13 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-SendReceiptRequest request = new SendReceiptRequest();
-request.setTxnId("orderxyz");
-request.setMobileNo("7000000000");
-request.setEmail("abc@xyz.com");
-```
-</details>
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = SendReceiptRequest()
-request.txnId = "orderxyz"
-request.mobileNo ="7000000000"
-request.email = "abc@xyz.com"
+```Dart
+SendReceiptRequest request = SendReceiptRequest(
+txnId:"orderxyz",
+mobileNo:"7000000000",
+email:"abc@xyz.com");
 ```
 </details>
 
@@ -292,8 +227,8 @@ request.email = "abc@xyz.com"
 
 ## Service Request API
 
-```Java
-EzeAPI.serviceRequest(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.serviceRequest(request);
 ```
 Razorpay provides a way to send service on request to customers. You can pass merchnat mobile number, email , issue type, issue info respectively as part of object.
 
@@ -301,29 +236,15 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-ServiceRequest request = new ServiceRequest();
-request.setMerchantPhoneNumber("7000000000");
-request.setMerchantEmail("abc@xyz.com");
-request.setIssueType("");
-request.setIssueInfo("");
-request.tags(listofString());
-```
-</details>
-
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = ServiceRequest()
-request.merchantPhoneNumber ="7000000000"
-request.merchantEmail = "abc@xyz.com"
-request.issueType = ""
-request.issueInfo = ""
-request.tags = listofString()
+```Dart
+ServiceRequest request = ServiceRequest(
+merchantPhoneNumber:"7000000000",
+merchantEmail:"abc@xyz.com",
+issueType:"",
+issueInfo:"",
+tags:listofString());
 ```
 </details>
 
@@ -343,7 +264,7 @@ request.tags = listofString()
 ## Send Receipt API
 
 ```Java
-EzeAPI.sendReceipt(this, REQUEST_CODE, request)
+String? result = await EzetapSdk.sendReceipt(request);
 ```
 You can use below API to send Razorpay PoS's payment receipt or charge-slip
 
@@ -351,24 +272,13 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-SendReceiptRequest request = new SendReceiptRequest();
-request.setTxnId("orderxyz");
-request.setMobileNo("7000000000");
-request.setEmail("abc@xyz.com");
-```
-</details>
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = SendReceiptRequest()
-request.txnId = "orderxyz"
-request.mobileNo = "7000000000"
-request.email = "abc@xyz.com"
+```Dart
+SendReceiptRequest request = SendReceiptRequest(
+txnId:"orderxyz",
+mobileNo:"7000000000",
+email:"abc@xyz.com");
 ```
 </details>
 
@@ -385,8 +295,8 @@ request.email = "abc@xyz.com"
 
 ## Attach Signature API
 
-```Java
-EzeAPI.attachSignature(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.attachSignature(request);
 ```
 This API allow you to attach an e-signature from the customer for payments.
 
@@ -394,35 +304,20 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-AttachSignatureRequest request = new AttachSignatureRequest();
-request.setTipAmount(100.0);
-request.setImageData("your image data");
-request.setImageType("format of image e.g JPEG, PNG etc");
-request.setImageHeight("height of the image");
-request.setImageWeight("weight of the image");
-request.setTxnId("order123");
-request.setEmiId("abcxyz");
+```Dart
+AttachSignatureRequest request = AttachSignatureRequest(
+tipAmount:100.0,
+imageData:"your image data",
+imageType:"format of image e.g JPEG, PNG etc",
+imageHeight:"height of the image",
+imageWeight:"weight of the image",
+txnId:"order123",
+eEmiId:"abcxyz");
 ```
 </details>
 
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = AttachSignatureRequest()
-request.tipAmount = 100.0
-request.imageData = "your image data"
-request.imageType = "format of image e.g JPEG, PNG etc"
-request.imageHeight = "height of the image"
-request.imageWeight = "weight of the image"
-request.txnId = "order123"
-request.emiId = "abcxyz"
-```
-</details>
 <details>
 <summary>Keys Information</summary>
 
@@ -441,7 +336,7 @@ request.emiId = "abcxyz"
 ## Display Transaction History API
 
 ```Java
-EzeAPI.displayTransactionHistory(this, REQUEST_CODE, request)
+String? result = await EzetapSdk.displayTransactionHistory(request);
 ```
 This API is used to get the transaction history. You need to pass agent name for this API.
 
@@ -449,21 +344,11 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-DisplayTransactionListRequest request = new DisplayTransactionListRequest();
-request.setAgentName("abc");
-```
-</details>
-
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = DisplayTransactionListRequest()
-request.agentName = "abc"
+```Dart
+DisplayTransactionListRequest request = DisplayTransactionListRequest(
+agentName:"abc");
 ```
 </details>
 
@@ -478,8 +363,8 @@ request.agentName = "abc"
 
 ## Get Transaction API
 
-```Java
-EzeAPI.getTransaction(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.getTransaction(request);
 ```
 This API is used to get the transaction details with reference.
 
@@ -487,24 +372,13 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-TxnWithReferenceRequest request = new TxnWithReferenceRequest();
-request.setFetchAllTransaction(true);
-request.setDoStopPayment(false);
-request.setReferences(listOfString());
-```
-</details>
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = new TxnWithReferenceRequest();
-request.fetchAllTransaction = true
-request.doStopPayment = false
-request.references = listOfString()
+```Dart
+TxnWithReferenceRequest request = TxnWithReferenceRequest(
+fetchAllTransaction:true,
+doStopPayment:false,
+references:listOfString());
 ```
 </details>
 
@@ -521,39 +395,23 @@ request.references = listOfString()
 
 ## Check For Incomplete Transaction API
 
-```Java
-EzeAPI.checkForIncompleteTransaction(this, REQUEST_CODE)
+```Dart
+String? result = await EzetapSdk.checkForIncompleteTransaction();
 ```
 
-In case of incomplete transaction for a user, the user is intimated about the status of the previous transaction. The App will prompt the user to check the status of the previous transaction before attempting a new transaction. The API will return details of the transaction (Status) as well.
+In case of an incomplete transaction for a user, the user is intimated about the status of the previous transaction. The App will prompt the user to check the status of the previous transaction before attempting a new transaction. The API will return details of the transaction (Status) as well.
 
 This request does not required any parameters
 
 ## Void Transaction API
 
-```Java
-EzeAPI.voidTransaction(this, REQUEST_CODE,transactionID)
+```Dart
+String? result = await EzetapSdk.voidTransaction(
+transactionID : ""
+);
 ```
 If the customer choose to return the service and you wish refund the money on the same day, in this case you can do void of a payment. Voiding a payment means that you cancel the payment before the settlement of money is made. If settlement is initiated then void won't work, this API is helpful if same day refund needs to be done.
 
-Below is the request code for API with parameters
-<details>
-
-<summary>Java Code</summary>
-
-```Java
-String transactionID = "order123"
-```
-</details>
-
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val transactionID = "order123"
-```
-</details>
 <details>
 <summary>Keys Information</summary>
 
@@ -566,8 +424,8 @@ val transactionID = "order123"
 
 ## Check for updates API
 
-```Java
-EzeAPI.checkForUpdates(this, REQUEST_CODE)
+```Dart
+String? result = await EzetapSdk.checkForUpdates();
 ```
 This API is used to Check for service application updates
 
@@ -575,29 +433,12 @@ This API doesn't need any request parameters
 
 ## Print Receipt API
 
-```Java
-EzeAPI.printReceipt(this, REQUEST_CODE,transactionID)
+```Dart
+String? result = await EzetapSdk.printReceipt(
+transactionID : ""
+);
 ```
-You can use below API to print Razorpay PoS's payment receipt or charge-slip
-
-Below is the request code for API with parameters
-<details>
-
-<summary>Java Code</summary>
-
-```Java
-String transactionID = "order123"
-```
-</details>
-
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val transactionID = "order123"
-```
-</details>
+You can use API to print Razorpay PoS's payment receipt or charge-slip
 
 <details>
 <summary>Keys Information</summary>
@@ -611,31 +452,21 @@ val transactionID = "order123"
 
 ## Print Bitmap API
 
-```Java
-EzeAPI.printBitmap(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.printBitmap(request);
 ```
-You can use this API to print custom receipt or invoice images you would like to.
+You can use this API to print custom receipts or invoice images you would like to.
 
 Below is the request code for API with parameters
 
 <details>
 
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-PrintBitmapRequest request = new PrintBitmapRequest();
-request.setImageData("your image data");
-request.setImageType("format of image e.g JPEG, PNG etc");
-```
-</details>
-<details>
-
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = PrintBitmapRequest();
-request.imageData = "your image data"
-request.imageType = "format of image e.g JPEG, PNG etc"
+```Dart
+PrintBitmapRequest request = PrintBitmapRequest(
+imageData:"your image data",
+imageType:"format of image e.g JPEG, PNG etc");
 ```
 </details>
 
@@ -644,7 +475,7 @@ request.imageType = "format of image e.g JPEG, PNG etc"
 
 | **ATTRIBUTES**               | **DESCRIPTION**           | **MANDATORY**   | 
 | -----------              | -----------           | ----------- |      
-| **imageData** | Image data to print bitmap| No         | 
+| **imageData** | Image data to print bitmap| Yes         | 
 | **imageType** | Type of image i.e. .png or .jpg | No         | 
 
 
@@ -652,37 +483,26 @@ request.imageType = "format of image e.g JPEG, PNG etc"
 
 ## Scan Barcode API
 
-```Java
-EzeAPI.scanBarcode(this, REQUEST_CODE, null)
+```Dart
+String? result = await EzetapSdk.scanBarcode();
 ```
-You can use this API to scan barcode 
-
-We need to pass null as parameter in this API
+You can use this API to scan the barcode.
 
 ## Load Balance API
 
-```Java
-EzeAPI.loadBalance(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.loadBalance(request);
 ```
 This API is used to load/add balance in the wallet (NCMC section).
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
 ```Java
-LoadBalanceRequest request = new LoadBalanceRequest();
-request.setAmount(100.0);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = LoadBalanceRequest();
-request.amount = 100.0
+LoadBalanceRequest request = LoadBalanceRequest(
+amount:100.0);
 ```
 </details>
 
@@ -697,22 +517,22 @@ request.amount = 100.0
 
 ## Update Balance API
 
-```Java
-EzeAPI.updateBalance(this, REQUEST_CODE, null)
+```Dart
+String? result = await EzetapSdk.updateBalance();
 ```
 This API is used to check updates and Sync the wallet (NCMC section).
 
 ## Request Balance API
 
-```Java
-EzeAPI.requestBalance(this, REQUEST_CODE, null)
+```Dart
+String? result = await EzetapSdk.requestBalance();
 ```
 This API is used to check the balance (NCMC section).
 
 ## Close/Logout API
 
-```Java
-EzeAPI.close(this, REQUEST_CODE)
+```Dart
+String? result = await EzetapSdk.close();
 ```
 
 The close API is invoked to exit from the client API, this method closes the connection between the Ezetap server and ends the session with the device and exits from the API
@@ -723,30 +543,20 @@ Recommendation: This method can be called before user logs out the of your appli
 
 ## Reset Password API
 
-```Java
-EzeAPI.resetPWD(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.resetPWD(request);
 ```
 This API can be used to reset your password with a new one.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-ResetPasswordRequest request = new ResetPasswordRequest();
-request.setOldPassword("abcd1234");
-request.setNewPassword("abcd4321");
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = ResetPasswordRequest()
-request.oldPassword = "abcd1234"
-request.newPassword = "abcd4321"
+```Dart
+ResetPasswordRequest request = ResetPasswordRequest(
+oldPassword:"abcd1234",
+newPassword:"abcd4321");
 ```
 </details>
 
@@ -762,8 +572,8 @@ request.newPassword = "abcd4321"
 
 ## Pre Auth API
 
-```Java
-EzeAPI.preAuth(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.preAuth(request);
 ```
 This API can be used to initiate the Pre auth transaction.
 
@@ -772,46 +582,23 @@ Below is the request code for API with parameters
 <details>
 <summary>Java Code</summary>
 
-```Java
-PreAuthRequest request = new PreAuthRequest();
-request.setCustomerMobileNo("7000000000");
-request.setCustomerEmail("abc@xyz");
-request.setCustomerName("abc");
-request.setReference1("1234");
-request.setReference2("");
-request.setReference3("");
-request.setReference4("");
-request.setReference5("");
-request.setReference6("");
-request.setReference7("");
-request.setPayToAccount("");
-request.setPaymentBy("");
-request.setAmount(100.0);
-request.setAmountTip(10.0);
-request.setAppData(new Hashtable<String, Object>);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = PreAuthRequest()
-request.customerMobileNo = "7000000000"
-request.customerEmail = "abc@xyz"
-request.customerName = "abc"
-request.reference1 = "1234"
-request.reference2 = ""
-request.reference3 = ""
-request.reference4 = ""
-request.reference5 = ""
-request.reference6 = ""
-request.reference7 = ""
-request.payToAccount = ""
-request.paymentBy = ""
-request.amount = 100.0
-request.amountTip = 10.0
-request.appData =  Hashtable<String, Any>
+```Dart
+PreAuthRequest request = PreAuthRequest(
+customerMobileNo:"7000000000",
+customerEmail:"abc@xyz",
+customerName:"ABC",
+reference1:"1234",
+reference2:"",
+reference3:"",
+reference4:"",
+reference5:"",
+reference6:"",
+reference7:"",
+payToAccount:"",
+paymentBy:"",
+amount:100.0,
+amountTip:10.0,
+appData(new Hashtable<String, Object>);
 ```
 </details>
 
@@ -830,8 +617,8 @@ request.appData =  Hashtable<String, Any>
 
 ## Confirm Pre Auth API
 
-```Java
-EzeAPI.confirmPreAuth(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.confirmPreAuth(request);
 ```
 
 This API can be used to confirm the Pre auth transaction.
@@ -839,22 +626,12 @@ This API can be used to confirm the Pre auth transaction.
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-AuthRequest request = new AuthRequest();
-request.setTxnId("order1234");
-request.setAmount(100.0);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = AuthRequest()
-request.txnId = "order1234"
-request.amount = 100.0
+```Dart
+AuthRequest request = AuthRequest(
+txnId : "order1234",
+amount : 100.0);
 ```
 </details>
 
@@ -870,30 +647,20 @@ request.amount = 100.0
 
 ## Release Pre Auth API
 
-```Java
-EzeAPI.releasePreAuth(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.releasePreAuth(request);
 ```
 To release the Pre auth transaction, this API can be used.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-AuthRequest request = new AuthRequest();
-request.setTxnId("order1234");
-request.setAmount(100.0);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = AuthRequest()
-request.txnId = "order1234"
-request.amount = 100.0
+```Dart
+AuthRequest request = AuthRequest(
+txnId : "order1234",
+amount : 100.0);
 ```
 </details>
 
@@ -910,27 +677,18 @@ request.amount = 100.0
 ## Stop Payment API
 
 ```Java
-EzeAPI.stopPayment(this, REQUEST_CODE, request)
+String? result = await EzetapSdk.stopPayment(request);
 ```
 This API can be used to stop the payment for the list of transactions. You need to pass a list of transaction ids in this API.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-StopPaymentRequest request = new StopPaymentRequest();
-request.setTxnIds(ListofString);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = StopPaymentRequest()
-request.txnIds = listofString()
+```Dart
+StopPaymentRequest request = StopPaymentRequest(
+txnIds : listofString());
 ```
 </details>
 
@@ -945,28 +703,20 @@ request.txnIds = listofString()
 
 ## Update Setting API
 
-```Java
-EzeAPI.updateSetting(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.updateSetting(request);
 ```
 This API can be used to update the setting.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-UpdateSettingRequest request = new UpdateSettingRequest();
-request.setUserAppOptions("");
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = UpdateSettingRequest()
-request.userAppOptions = ""
+```Dart
+UpdateSettingRequest request = UpdateSettingRequest(
+userAppOptions : ""
+);
 ```
 </details>
 
@@ -981,97 +731,63 @@ request.userAppOptions = ""
 
 ## Get Login Response API
 
-```Java
-EzeAPI.getLoginResponse(this, REQUEST_CODE)
+```Dat
+String? result = await EzetapSdk.getLoginResponse();
 ```
 To fetch the login response, this API can be used. It will return the login response for the current user.
 
 
 ## Get Device Info API
 
-```Java
-EzeAPI.getDeviceInfo(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.getDeviceInfo(request);
 ```
 This API can be used to fetch the info about your device. It will return information about the device i.e. Battery, Device Name, Model etc.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
-
-```Java
-DeviceInfoRequest request = new DeviceInfoRequest();
-request.setUserAppOptions("");
-```
-</details>
-
-<details>
 <summary>Kotlin Code</summary>
 
-```Kotlin
-val request = DeviceInfoRequest()
-request.userAppOptions = ""
+```Dart
+DeviceInfoRequest request = DeviceInfoRequest(
+userAppOptions : ""
+);
 ```
 </details>
 
 ## Refund Transaction API
 
-```Java
-EzeAPI.refundTransaction(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.refundTransaction(request);
 ```
 To initiate the refund for the transaction this API can be used. You have to fill in the required details of the transaction and call the API to initiate a refund.
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-RefundTransactionRequest request = new RefundTransactionRequest();
-request.setCustomerMobileNo("7000000000");
-request.setCustomerEmail("abc@xyz");
-request.setCustomerName("abc");
-request.setReference1("1234");
-request.setReference2("");
-request.setReference3("");
-request.setReference4("");
-request.setReference5("");
-request.setReference6("");
-request.setReference7("");
-request.setPayToAccount("");
-request.setPaymentBy("");
-request.setAmount(100.0);
-request.setTxnId("abc1234");
-request.setAppData(new Hashtable<String, Object>);
-request.setAddlData(new Hashtable<String, Object>);
-request.setLabels(ListofString);
-request.setAdditionalReferences(ListofString);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = RefundTransactionRequest()
-request.customerMobileNo = "7000000000"
-request.customerEmail = "abc@xyz"
-request.customerName = "abc"
-request.reference1 = "1234"
-request.reference2 = ""
-request.reference3 = ""
-request.reference4 = ""
-request.reference5 = ""
-request.reference6 = ""
-request.reference7 = ""
-request.payToAccount = ""
-request.paymentBy = ""
-request.amount = 100.0
-request.txnId = "abc1234"
-request.appData = Hashtable<String, Any>
-request.addlData = Hashtable<String, Any>
-request.labels = listofString()
-request.additionalReferences = listofString()
+```Dart
+RefundTransactionRequest request = RefundTransactionRequest(
+customerMobileNo : "7000000000",
+customerEmail : "abc@xyz",
+customerName : "ABC",
+reference1 : "1234",
+reference2 : "",
+reference : "",
+reference : "",
+reference : "",
+reference6 : "",
+reference7 : "",
+payToAccount : "",
+paymentBy : "",
+amount : 100.0,
+txnId : "abc1234",
+appData : Hashtable<String, Any>
+addlData : Hashtable<String, Any>
+labels : listofString()
+additionalReferences : listofString());
 ```
 </details>
 
@@ -1092,28 +808,19 @@ request.additionalReferences = listofString()
 
 ## Subscribe Topics API
 
-```Java
-EzeAPI.subscribeToTopics(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.subscribeToTopics(request);
 ```
 To subscribe to any topic, this API can be used. This API accepts a list of string topics.  
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-TopicsRequest request = new TopicsRequest();
-request.setTopics(ListofString);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = TopicsRequest()
-request.topics = listofString()
+```Dart
+TopicsRequest request = TopicsRequest(
+topics : listofString());
 ```
 </details>
 
@@ -1128,28 +835,19 @@ request.topics = listofString()
 
 ## UnSubscribe Topics API
 
-```Java
-EzeAPI.unSubscribeToTopics(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.unSubscribeToTopics(request);
 ```
 To unsubscribe to any topic, this API can be used. This API accepts a list of string topics.  
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-TopicsRequest request = new TopicsRequest();
-request.setTopics(ListofString);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = TopicsRequest()
-request.topics = listofString()
+```Dart
+TopicsRequest request = TopicsRequest(
+topics : listofString());
 ```
 </details>
 
@@ -1164,28 +862,19 @@ request.topics = listofString()
 
 ## Acknowledge Notification API
 
-```Java
-EzeAPI.acknowledgeToNotification(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.acknowledgeToNotification(request);
 ```
 To acknowledge a notification, this API can be used. This API accepts a string topic.  
 
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Block</summary>
 
-```Java
-AcknowledgeRequest request = new AcknowledgeRequest();
-request.setAcknowledgeNotification("abc_update");
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val request = AcknowledgeRequest()
-request.acknowledgeNotification = "abc_update"
+```Dart
+AcknowledgeRequest request = AcknowledgeRequest(
+acknowledgeNotification : "abc_update");
 ```
 </details>
 
@@ -1200,30 +889,14 @@ request.acknowledgeNotification = "abc_update"
 
 ## Install APK API
 
-```Java
-EzeAPI.installApk(this, REQUEST_CODE, request)
+```Dart
+String? result = await EzetapSdk.installApk(
+directoryPath : ""
+);
 ```
 To install apk from a specific location, this API can be used.
 
 Below is the request code for API with parameters
-
-<details>
-<summary>Java Code</summary>
-
-```Java
-String directoryPath = "/folder/test";
-EzeAPI.installApk(this, REQUEST_CODE, directoryPath);
-```
-</details>
-
-<details>
-<summary>Kotlin Code</summary>
-
-```Kotlin
-val directoryPath = "/folder/test"
-EzeAPI.installApk(this, REQUEST_CODE, directoryPath)
-```
-</details>
 
 <details>
 <summary>Keys Information</summary>
