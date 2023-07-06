@@ -54,7 +54,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 InitializeRequest request = InitializeRequest(
@@ -104,7 +104,7 @@ Razorpay POS has a universal pay API through which all the payment modes (that i
 Preparing Input for the Pay API
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Java
 GenericPayment request = GenericPayment(
@@ -136,6 +136,41 @@ emiType:EmiType.NORMAL,
 providerName:Provider.KREDITBEE,
 serviceFee:1.0,
 amountCashback:10.0);
+
+Customer cus = Customer(
+name : "ABC",
+email : "",
+mobileNo : "");
+
+References ref = References(
+reference1 : "abc",
+reference2 : "",
+reference3 : "",
+reference : "",
+reference : "",
+reference6 : "",
+reference7 : "");
+
+ProductDetails pd = ProductDetails(
+SKUCode : "";
+brand : "",
+serial : "");
+
+UPIRequest upi = UPIRequest(
+payerVPA : "",
+payerName : "");
+
+Gst gst = Gst(
+merchantInvoiceNo : "",
+gstAmount : 1.0,
+sgstAmount : 1.0,
+cgstAmount : 1.0,
+igstAmount : 1.0,
+cessAmount : 1.0,
+gstIncentiveAmount : 1.0,
+merchantInvoiceDate : "");
+
+
 ```
 </details>
 
@@ -176,7 +211,7 @@ Get Card Info API is used to get the card information with the type of card, car
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 CardInfoRequest request = CardInfoRequest(
@@ -204,7 +239,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 SendReceiptRequest request = SendReceiptRequest(
@@ -236,7 +271,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 ServiceRequest request = ServiceRequest(
@@ -272,7 +307,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 SendReceiptRequest request = SendReceiptRequest(
@@ -304,7 +339,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 AttachSignatureRequest request = AttachSignatureRequest(
@@ -344,7 +379,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 DisplayTransactionListRequest request = DisplayTransactionListRequest(
@@ -372,7 +407,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 TxnWithReferenceRequest request = TxnWithReferenceRequest(
@@ -461,7 +496,7 @@ Below is the request code for API with parameters
 
 <details>
 
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 PrintBitmapRequest request = PrintBitmapRequest(
@@ -498,7 +533,7 @@ This API is used to load/add balance in the wallet (NCMC section).
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Java
 LoadBalanceRequest request = LoadBalanceRequest(
@@ -551,7 +586,7 @@ This API can be used to reset your password with a new one.
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 ResetPasswordRequest request = ResetPasswordRequest(
@@ -580,7 +615,7 @@ This API can be used to initiate the Pre auth transaction.
 Below is the request code for API with parameters
 
 <details>
-<summary>Java Code</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 PreAuthRequest request = PreAuthRequest(
@@ -626,7 +661,7 @@ This API can be used to confirm the Pre auth transaction.
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 AuthRequest request = AuthRequest(
@@ -655,7 +690,7 @@ To release the Pre auth transaction, this API can be used.
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 AuthRequest request = AuthRequest(
@@ -684,7 +719,7 @@ This API can be used to stop the payment for the list of transactions. You need 
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 StopPaymentRequest request = StopPaymentRequest(
@@ -711,7 +746,7 @@ This API can be used to update the setting.
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 UpdateSettingRequest request = UpdateSettingRequest(
@@ -747,7 +782,7 @@ This API can be used to fetch the info about your device. It will return informa
 Below is the request code for API with parameters
 
 <details>
-<summary>Kotlin Code</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 DeviceInfoRequest request = DeviceInfoRequest(
@@ -766,7 +801,7 @@ To initiate the refund for the transaction this API can be used. You have to fil
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 RefundTransactionRequest request = RefundTransactionRequest(
@@ -816,7 +851,7 @@ To subscribe to any topic, this API can be used. This API accepts a list of stri
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 TopicsRequest request = TopicsRequest(
@@ -843,7 +878,7 @@ To unsubscribe to any topic, this API can be used. This API accepts a list of st
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 TopicsRequest request = TopicsRequest(
@@ -870,7 +905,7 @@ To acknowledge a notification, this API can be used. This API accepts a string t
 Below is the request code for API with parameters
 
 <details>
-<summary>Code Block</summary>
+<summary>Code Snippet</summary>
 
 ```Dart
 AcknowledgeRequest request = AcknowledgeRequest(
