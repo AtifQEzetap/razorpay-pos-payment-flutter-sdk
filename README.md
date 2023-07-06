@@ -96,7 +96,7 @@ captureReceipt: true);
 ## Payment Transaction API
 
 ```Dart
-String? result = await EzetapSdk.performTransaction(request);
+String? result = await EzetapSdk.pay(request);
 ```
 
 Razorpay POS has a universal pay API through which all the payment modes (that is enabled for the merchant) can be invoked through a single API call. With this API there will be no need of calling the individual methods for different payment modes (like Card, Remote Pay, UPI etc).
@@ -107,69 +107,21 @@ Preparing Input for the Pay API
 <summary>Code Snippet</summary>
 
 ```Java
-GenericPayment request = GenericPayment(
-amount:12000,
-txnType: TxnType.PAY,
-userName:"abcddd",
-issueType:"xyz",
-issueInfo:"ABC",
-tags:listOfString,
-merchantPhoneNumber:"7000000000",
-merchantEmail:"abc@xyz.com",
-productDetails:ProductDetails(),
-additionalReferences:listOfString,
-request.setPayToAccount("");
-request.setOptions(new Options());
-upi:UPIRequest(),
-gst:Gst(),
-paymentMode:TxnMode.CARD,
-walletAcquirer:"abcddd",
-agentName:"abcddd",
-agentMob:"8000000000");
-
-Options op =  Options(
-references: References(),
-amountTip:10.1,
-customer: Customer(),
-paymentBy:"",
-emiType:EmiType.NORMAL,
-providerName:Provider.KREDITBEE,
-serviceFee:1.0,
-amountCashback:10.0);
-
-Customer cus = Customer(
-name : "ABC",
-email : "",
-mobileNo : "");
-
-References ref = References(
-reference1 : "abc",
-reference2 : "",
-reference3 : "",
-reference : "",
-reference : "",
-reference6 : "",
-reference7 : "");
-
-ProductDetails pd = ProductDetails(
-SKUCode : "";
-brand : "",
-serial : "");
-
-UPIRequest upi = UPIRequest(
-payerVPA : "",
-payerName : "");
-
-Gst gst = Gst(
-merchantInvoiceNo : "",
-gstAmount : 1.0,
-sgstAmount : 1.0,
-cgstAmount : 1.0,
-igstAmount : 1.0,
-cessAmount : 1.0,
-gstIncentiveAmount : 1.0,
-merchantInvoiceDate : "");
-
+PaymentRequest request = PaymentRequest(
+        amount: "10",
+        options: Options(
+            serviceFee: -1,
+            customer: Customer(email: "tt@tt.com", mobileNo: "", name: ""),
+            emiType: "NORMAL",
+            paymentBy: "ANY",
+            paymentMode: "CARD",
+            references: References(
+                additionalReferences: List.empty(),
+                reference1: "1234",
+                reference2: "",
+                reference3: ""),
+            providerName: "EMI",
+            appData: AppData(walletAcquirer: "")));
 
 ```
 </details>
@@ -971,4 +923,5 @@ Future<void> onBarcodePressed() async {
 3. This documentation
 4. Ezetap app key or login credentials to Ezetap service
 5. Ezetap device to test card payments
+
 
