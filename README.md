@@ -130,7 +130,7 @@ PaymentRequest request = PaymentRequest(
 | **username**  | Unique identifier of the user. Recommended to set this as the user mobile number | Yes        | 
 | **reference1**  | The reference1 will be the primary reference ID, please make sure this is unique for each context of payment | No        | 
 | **options**  | All the optional params will go under the options object in the input. | No        | 
-| **additionalReferences**  | In few cases you might want put more context to the payment like items part of the order, store location, type of item etc. This secondary information can go in additional References array. | No        | 
+| **additionalReferences**  | In few cases you might want put more context to the payment like items part of the order, store location, type of item etc. This secondary information can go in additional References list. | No        | 
 
 Note: You would like to associate some context for the payment like order number, invoice number, receipt number etc. This information can go in as reference1, reference2 of the references object. We support a total of seven primary references that can be associated to the payment (reference1-7). 
 
@@ -288,8 +288,7 @@ FetchTxnDetailsRequest request = FetchTxnDetailsRequest(
 
 | **ATTRIBUTES**               | **DESCRIPTION**           | **MANDATORY**   | 
 | -----------              | -----------           | ----------- |      
-| **fetchAllTransaction** | Boolean value to get the transactions| No         | 
-| **doStopPayment** | Boolean value to stop payment |   No     |
+| **additionalReferences**  | In few cases you might want put more context to the payment like items part of the order, store location, type of item etc. This secondary information can go in additional References list. | No        | 
 | **references**  | Transaction reference  | No        | 
 
 </details>
